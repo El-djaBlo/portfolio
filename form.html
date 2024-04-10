@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-color: #6f2121;
+             */
+            background-image:url(images/formbackground.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #015058;
+            
+            /* background: linear-gradient(to bottom left, #ff5e62, #ff9966); */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        form {
+            background: linear-gradient(to bottom right, #0a776c, #7aa9a5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input[type=text], input[type=email], input[type=tel], textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 4px;
+            color: #000000;
+            background-color: #E3FEF7;
+            padding-left: 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, textarea:focus {
+            background-color: #424242;
+        }
+        input[type=submit] {
+            background-color: whitesmoke;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        input[type=submit]:hover {
+            background-color: #ff453a;
+        }
+        .error {
+            color: red;
+        }
+        /* Add animation to button */
+        input[type=submit]:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        /* Add animation to form on hover */
+        form:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        /* Add animation to text inputs on focus */
+        input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        /* Add animation to textarea on focus */
+        textarea:focus {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 style="color: whitesmoke;">Contact Me</h2>
+    <form action="connect.php" method="post" id="contactForm" onsubmit="return validateForm()" target="_parent">
+        <label style="color: whitesmoke;" for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Full Name" required>
+
+        <label style="color: whitesmoke;" for="contact">Contact Number</label>
+        <input type="tel" id="contact" name="contact" placeholder="Your contact number.." pattern="[0-9]{10}" required>
+
+        <label style="color: whitesmoke;" for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email.." required>
+
+        <label style="color: whitesmoke;" for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Write something.." style="height:200px" required></textarea>
+
+        <input style="color: black;" type="submit" value="Submit" name="submit">
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        var name = document.forms["contactForm"]["name"].value;
+        var contact = document.forms["contactForm"]["contact"].value;
+        var email = document.forms["contactForm"]["email"].value;
+        var message = document.forms["contactForm"]["message"].value;
+
+        var contactRegex = /^[0-9]{10}$/;
+        var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if (name == "" || contact == "" || email == "" || message == "") {
+            alert("All fields must be filled out");
+            return false;
+        }
+        if (!contact.match(contactRegex)) {
+            alert("Please enter a valid contact number");
+            return false;
+        }
+        if (!email.match(emailRegex)) {
+            alert("Please enter a valid email address");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</body>
+</html>
